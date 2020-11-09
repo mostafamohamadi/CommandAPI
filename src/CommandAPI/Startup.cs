@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
 
 namespace CommandAPI
 {
@@ -22,10 +23,16 @@ namespace CommandAPI
         }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            // Add framework services.
+            var builder = new NpgsqlConnectionStringBuilder();
+            builder.ConnectionString =
+              Configuration.GetConnectionString("DefaultConnection");
+            builder.Username = Configuration["UserID"];
+            builder.Password = Configuration["Password"];
+
             services.AddDbContext<CommandContext>(options =>
-            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(builder.ConnectionString));
+
+            services.AddControllers();
             services.AddScoped<ICommandAPIRepo, SqlCommandAPIRepo>();
         }
 
