@@ -5,12 +5,12 @@ namespace CommandAPI.Data
 {
     public class MockCommandAPIRepo : ICommandAPIRepo
     {
-        public void Create(Command cmd)
+        public void CreateCommand(Command cmd)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Delete(Command cmd)
+        public void DeleteCommand(Command cmd)
         {
             throw new System.NotImplementedException();
         }
@@ -50,7 +50,7 @@ namespace CommandAPI.Data
             throw new System.NotImplementedException();
         }
 
-        public void Update(Command cmd)
+        public void UpdateCommand(Command cmd)
         {
             throw new System.NotImplementedException();
         }

@@ -8,8 +8,8 @@ namespace CommandAPI.Data
         bool SaveChanges();
         IEnumerable<Command> GetAllCommands();
         Command GetCommandById(int id);
-        void Create(Command cmd);
-        void Update(Command cmd);
-        void Delete(Command cmd);
+        void CreateCommand(Command cmd);
+        void UpdateCommand(Command cmd);
+        void DeleteCommand(Command cmd);
     }
 }

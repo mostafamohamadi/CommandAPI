@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using CommandAPI.Models;
@@ -13,14 +14,21 @@ namespace CommandAPI.Data
             _context = context;
         }
 
-        public void Create(Command cmd)
+        public void CreateCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            if (cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+           }
+           _context.CommandItem.Add(cmd);
         }
 
-        public void Delete(Command cmd)
+        public void DeleteCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            if(cmd == null){
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.CommandItem.Remove(cmd);
         }
 
         public IEnumerable<Command> GetAllCommands()
@@ -30,17 +38,17 @@ namespace CommandAPI.Data
 
         public Command GetCommandById(int id)
         {
-            return _context.CommandItem.FirstOrDefault(c=>c.Id == id);
+            return _context.CommandItem.FirstOrDefault(c => c.Id == id);
         }
 
         public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+            return (_context.SaveChanges() >= 0);
         }
 
-        public void Update(Command cmd)
+        public void UpdateCommand(Command cmd)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }
